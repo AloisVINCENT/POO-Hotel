@@ -1,8 +1,28 @@
 import java.util.Scanner;
 
 public class Saisie {
+    public static Scanner sc = new Scanner(System.in);
+    public static Hotel h = newHotel();
+    
+    public static Hotel newHotel(){
+        System.out.println("----------------------------------------------------------");
+        System.out.println("Entrez le nom de l'hôtel");
+        System.out.println("----------------------------------------------------------");
+        String name = sc.nextLine();
+        System.out.println();
+        System.out.println("----------------------------------------------------------");
+        System.out.println("Entrez l'adresse de l'hôtel");
+        System.out.println("----------------------------------------------------------");
+        String address = sc.nextLine();
+        System.out.println();
+        Hotel h = new Hotel(name, address);
+        System.out.println("----------------------------------------------------------");
+        System.out.println("L'hôtel a bien été créé");
+        System.out.println("----------------------------------------------------------");
+        return h;
+    }
+    
     public static void Start(){
-        Scanner sc = new Scanner(System.in);
         int x = sc.nextInt();
         System.out.println();
         switch (x) {
@@ -27,13 +47,14 @@ public class Saisie {
             Start();
             break;
         }
-        sc.close();
     }
 
     public static void gestionChambre(){
-        Scanner sc = new Scanner(System.in);
         int x = sc.nextInt();
-
+        int price1 = 50;
+        int price2 = 80;
+        int price3 = 150;
+        int price4 = 200;
         switch (x) {
             case 1:
                 System.out.println();
@@ -73,24 +94,25 @@ public class Saisie {
                 int temp = sc.nextInt();
                 System.out.println();
                 int price = 0;
+
                 while (temp > 4 | temp < 1) {
                     System.out.println("Erreur : Saisie invalide, veuillez entrer une valeur comprise entre 1 et 4");
                 }
                 switch (temp) {
                     case 1:
-                    price = 50;
+                    price = price1;
                     break;
         
                     case 2:
-                    price = 80;
+                    price = price2;
                     break;
          
                     case 3:
-                    price = 150;
+                    price = price3;
                     break;
         
                     case 4:
-                    price = 200;
+                    price = price4;
                     break;
         
                     default:
@@ -105,6 +127,7 @@ public class Saisie {
                 System.out.println("Prix : " + maChambre.price);
                 System.out.println("##########################################################");
 
+                h.addChambre(maChambre);
 
             case 2:
             //? Changer les numéros ou induire des prix variables
@@ -112,11 +135,24 @@ public class Saisie {
             default:
                 break;
         }
-        sc.close();
     }
 
     public static void gestionClient(){
-
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                System.out.println();
+                System.out.println("----------------------------------------------------------");
+                System.out.println("Entrez le nom du (de la) client.e");
+                System.out.println("----------------------------------------------------------");
+                String name = sc.next();
+                System.out.println();
+                //TODO Vérifier si nom en MAJ (On veut tout en MAJ)
+                h.addClient(new Client(name));
+                break;
+            case 2 :
+                //String cl = sc.next();
+        }
     }
     public static void gestionRéservation(){
         

@@ -18,7 +18,7 @@ public class Client {
 
 
 	public Vector<Hotel> listeClients = new Vector<Hotel>();
-	public void addClient(Hotel h){
+	public void addHotel(Hotel h){
 		listeClients.add(h);
 	}
 }
