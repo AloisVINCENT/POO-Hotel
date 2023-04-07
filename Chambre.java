@@ -15,14 +15,25 @@ public class Chambre {
 	}
 
 	
-	public Vector<Hotel> listeChambres = new Vector<Hotel>();
-	public void addHotel(Hotel h){
-		listeChambres.add(h);
+	public Hotel hotel;
+	public void setHotel(Hotel h){
+		hotel = h;
 	}
 
 	 
-	public Vector<Réservation> listeRéservations = new Vector<Réservation>();
-	public void addRéservation(Réservation r){
-		listeRéservations.add(r);
+	public Vector<Reservation> listeReservations = new Vector<Reservation>();
+	public void addReservation(Reservation r){
+		listeReservations.add(r);
+	}
+
+	
+	public boolean isDispo(Date start2, Date end2){
+		for (Reservation r : listeReservations) {
+			if (r.start.after(end2) || r.end.before(start2)) {
+				// Les intervalles ne se chevauchent pas
+				return true;
+			}
+		}
+		return false;
 	}
 }

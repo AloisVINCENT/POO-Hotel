@@ -1,23 +1,25 @@
 
 import java.util.*;
 
-public class Réservation {
+public class Reservation {
 	public Date start;
 	public Date end;
 	public Client client;
+	public int num;
 	/**
 	 * Default constructor
 	 */
-	public Réservation(Date s, Date e, Client c) {
+	public Reservation(Date s, Date e, Client c, int n) {
 		start = s;
 		end = e;
 		client = c;
+		num = n;
 	}
 
 
-	public Vector<Chambre> listeChambresRéservées = new Vector<Chambre>();
-	public void addChambre(Chambre ch){
-		listeChambresRéservées.add(ch);
+	public Chambre chambre;
+	public void setChambre(Chambre ch){
+		chambre = ch;
 	}
 
 

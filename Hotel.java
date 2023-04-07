@@ -29,4 +29,11 @@ public class Hotel {
 	public void addProduit(Produit p){
 		listeProduits.add(p);
 	}
+
+	//TODO getFreeRooms qui va parcourir listeChambres et appliquer la methode isDispo
+
+	public static Vector<Chambre> getFreeRooms(){
+		return null;
+	}
+
 }

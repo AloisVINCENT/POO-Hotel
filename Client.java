@@ -11,9 +11,9 @@ public class Client {
 	}
 
 
-	public Vector<Réservation> listeRéservations = new Vector<Réservation>();
-	public void addRéservation(Réservation r){
-		listeRéservations.add(r);
+	public Vector<Reservation> listeReservations = new Vector<Reservation>();
+	public void addReservation(Reservation r){
+		listeReservations.add(r);
 	}
 
 
