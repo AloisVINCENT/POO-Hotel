@@ -2,25 +2,24 @@ import java.util.*;
 import java.text.*;
 
 public class Saisie {
+    //Le compteur sert au numéro de réservation
+    public static int compteur = 0;
+
     public static Scanner sc = new Scanner(System.in);
 
+
     public static Hotel newHotel() {
-        System.out.println("|--------------------------------------------------------|");
-        System.out.println("|                Entrez le nom de l'hotel                |");
-        System.out.println("|--------------------------------------------------------|");
+        Menu.newHotel1();
         String name = sc.nextLine();
         System.out.println();
-        System.out.println("|--------------------------------------------------------|");
-        System.out.println("|              Entrez l'adresse de l'hotel               |");
-        System.out.println("|--------------------------------------------------------|");
+        Menu.newHotel2();
         String address = sc.nextLine();
         System.out.println();
         Hotel h = new Hotel(name, address);
-        System.out.println("|--------------------------------------------------------|");
-        System.out.println("|                L'hotel a bien ete cree                 |");
-        System.out.println("|--------------------------------------------------------|");
+        Menu.newHotel3();
         return h;
     }
+
 
     public static void Start() {
         boolean fin = false;
@@ -35,7 +34,7 @@ public class Saisie {
                     Menu.gestionClient();
                     break;
                 case 3:
-                    affichageReservation();
+                    Reservation.affichageReservation();
                     break;
                 case 4:
                     Menu.gestionSejour();
@@ -49,25 +48,15 @@ public class Saisie {
                     break;
             }
         }
-
     }
 
     public static void gestionChambre() {
         int x = sc.nextInt();
-        // Prix de la chambre simple
-        int price1 = 50;
-        // Prix de la chambre double
-        int price2 = 80;
-        // Prix de la suite classique
-        int price3 = 150;
-        // Prix de la suite présidentielle
-        int price4 = 200;
+
         switch (x) {
             case 1:
-                System.out.println();
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println("|              Entrez l'etage de la chambre              |");
-                System.out.println("|--------------------------------------------------------|");
+                Menu.etageChambre();
+
                 int floor = sc.nextInt();
                 System.out.println();
                 while (floor < 0 | floor > 9) {
@@ -79,11 +68,7 @@ public class Saisie {
                     floor = sc.nextInt();
                 }
 
-
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println("|             Entrez le numero de la chambre             |");
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println();
+                Menu.numChambre();
 
                 int temp_num = sc.nextInt();
                 while (temp_num < 0 | temp_num > 99) {
@@ -92,16 +77,7 @@ public class Saisie {
                 }
                 int num = floor * 100 + temp_num;
 
-
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println("|              Entrez le type de la chambre              |");
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println("| 1 : Simple                                             |");
-                System.out.println("| 2 : Double                                             |");
-                System.out.println("| 3 : Suite Classique                                    |");
-                System.out.println("| 4 : Suite Presidentielle                               |");
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println();
+                Menu.typeChambre();
 
                 int temp = sc.nextInt();
                 int price = 0;
@@ -111,54 +87,44 @@ public class Saisie {
 
                 switch (temp) {
                     case 1:
-                        price = price1;
+                        price = 50;
                         break;
 
                     case 2:
-                        price = price2;
+                        price = 80;
                         break;
 
                     case 3:
-                        price = price3;
+                        price = 150;
                         break;
 
                     case 4:
-                        price = price4;
+                        price = 200;
                         break;
 
                     default:
                         break;
                 }
 
-                // ! Cette partie sert à verifier la creation de l'objet
-                Chambre maChambre = new Chambre(num, floor, price);
-                System.out.println("##########################################################");
-                System.out.println("Numero de chambre : " + maChambre.num);
-                System.out.println("etage : " + maChambre.floor);
-                System.out.println("Prix : " + maChambre.price);
-                System.out.println("##########################################################");
 
-                Menu.h.addChambre(maChambre);
-
+                Chambre chambreSelectionne = new Chambre(num, floor, price);
+                Menu.h.addChambre(chambreSelectionne);
+                break;
             case 2:
-                // TODO Affichage de la liste des chambres
+                Hotel.affichageChambres();
                 break;
             default:
                 break;
         }
+        //Peu importe le switch, on veut retourner au menu à la fin
         Menu.Choix();
     }
 
     public static void gestionClient() {
-        int compteur = 0;
         int x = sc.nextInt();
-        boolean x1 = false;
         switch (x) {
             case 1:
-                System.out.println();
-                System.out.println("|--------------------------------------------------------|");
-                System.out.println("|           Entrez le nom du (de la) client.e            |");
-                System.out.println("|--------------------------------------------------------|");
+                Menu.nomClient();
                 String name = sc.next();
                 System.out.println();
                 // TODO Verifier si nom en MAJ (On veut tout en MAJ)
@@ -168,19 +134,12 @@ public class Saisie {
                 gestionReservation(c, compteur);
                 break;
             case 2:
-                x1 = true;
-                // TODO Affichage de la liste des clients
-        }
-        if (x1) {
-            Menu.Choix();
+                Hotel.affichageClients();
         }
     }
 
-    public static void gestionReservation(Client c, int num) {
-        System.out.println();
-        System.out.println("|--------------------------------------------------------|");
-        System.out.println("|     Entrez la date d'arrivée au format dd/MM/yyyy      |");
-        System.out.println("|--------------------------------------------------------|");
+    public static void gestionReservation(Client cl, int num) {
+        Menu.dateArrivee();
         //TODO comprendre comment ça fonctionne
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date start = null;
@@ -189,29 +148,28 @@ public class Saisie {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        System.out.println();
-        System.out.println("|--------------------------------------------------------|");
-        System.out.println("|     Entrez la date de départ au format dd/MM/yyyy      |");
-        System.out.println("|--------------------------------------------------------|");
+        Menu.dateDepart();
         Date end = null;
-        
         try {
             start = dateFormat.parse(sc.next());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
+        // On veut assigner une chambre à notre reservation en parcourant la liste de chambres
+        Chambre ch = null;
+        for (Chambre x : Hotel.listeChambres) {
+            ch = x;
+        }
+        Reservation r = new Reservation(start, end, cl, ch, num);
+        ch.addReservation(r);
 
-        Reservation r = new Reservation(start, end, c, num);
         
 
         Menu.Choix();
     }
 
-    public static void affichageReservation(){
-        Menu.Choix();
-    }
+
 
     public static void gestionSejour() {
         Menu.Choix();

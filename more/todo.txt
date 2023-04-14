@@ -1,0 +1,18 @@
+!!! A faire :
+
+1. Demande du type de chambre désiré
+2. Isdispo !
+3. Parcourir dans listChambre parmi celles du type désiré :
+    - Si DISPO : Prendre la première (if x!=0 break OU return)
+    - SINON parcourir parmi la catégorie d'en dessous
+4. Verifier toutes les données rentrées :
+    - Date >12
+    - Maj OU Min
+    - etc.
+
+)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+! Si le temps :
+
+1. Systeme de fichiers (memoire)
+2. Minibar et consommations ?

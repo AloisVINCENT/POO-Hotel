@@ -21,7 +21,8 @@ public class Chambre {
 	}
 
 	 
-	public Vector<Reservation> listeReservations = new Vector<Reservation>();
+	public static Vector<Reservation> listeReservations = new Vector<Reservation>();
+
 	public void addReservation(Reservation r){
 		listeReservations.add(r);
 	}
