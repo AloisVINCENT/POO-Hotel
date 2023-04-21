@@ -27,6 +27,15 @@ public class Hotel {
 		}
 	}
 
+	public static void affichageChambres(Vector<Chambre> liste) {
+		//TODO Affichage en tableau
+		int x = 1;
+		for (Chambre ch : liste) {
+			System.out.println("Chambre "+ x + ": Numéro : " + ch.num + " | Prix : " + ch.price);
+			x++;
+		}
+	}
+
 	public static Vector<Client> listeClients = new Vector<Client>();
 	public void addClient(Client cl){
 		listeClients.add(cl);
@@ -48,8 +57,16 @@ public class Hotel {
 
 	//TODO getFreeRooms qui va parcourir listeChambres et appliquer la methode isDispo
 
-	public static Vector<Chambre> getFreeRooms(){
-		return null;
+	public static Vector<Chambre> getFreeRooms(int priceWanted, Date start, Date end){
+				Vector<Chambre> chL = new Vector<Chambre>();
+				for (Chambre x : Hotel.listeChambres) {
+					if (x.price == priceWanted && Chambre.isDispo(start, end) == true) {
+						System.out.println("Chambre dispo :");
+						System.out.println(x);
+						chL.add(x);
+					}
+				}
+		return chL;
 	}
 
 }

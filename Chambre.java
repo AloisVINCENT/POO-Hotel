@@ -28,13 +28,17 @@ public class Chambre {
 	}
 
 	
-	public boolean isDispo(Date start2, Date end2){
+	public static boolean isDispo(Date start2, Date end2){
 		for (Reservation r : listeReservations) {
-			if (r.start.after(end2) || r.end.before(start2)) {
-				// Les intervalles ne se chevauchent pas
-				return true;
+			if ( (start2.after(r.start) && start2.before(r.end)) || (end2.after(r.start) && end2.before(r.end)) || (start2.before(r.start) && end2.after(r.end))) {
+				System.out.print("Conflit avec la reservation :");
+				System.out.println(r.num);
+				return false;
 			}
 		}
-		return false;
+		System.out.print("Reservation valide");
+		return true;
 	}
+	//!! ERREUR : 
+	//!! Pourquoi retourner false ? Pq False plutot que true ? Comparer avec listeReserv ? Rester dans le for meme si faux a un moment !
 }

@@ -105,6 +105,14 @@ public class Menu {
         System.out.println("|     Entrez la date de départ au format dd/MM/yyyy      |");
         System.out.println("|--------------------------------------------------------|");
     }
+
+    public static void selectionChambre() {
+        System.out.println();
+        System.out.println("|--------------------------------------------------------|");
+        System.out.println("|   Entrez le numéro de la chambre que vous souhaitez    |");
+        System.out.println("|--------------------------------------------------------|");
+    }
+
     public static void gestionSejour() {
         Saisie.gestionSejour();
     }

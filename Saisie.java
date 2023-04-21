@@ -2,11 +2,10 @@ import java.util.*;
 import java.text.*;
 
 public class Saisie {
-    //Le compteur sert au numéro de réservation
+    // Le compteur sert au numéro de réservation
     public static int compteur = 0;
 
     public static Scanner sc = new Scanner(System.in);
-
 
     public static Hotel newHotel() {
         Menu.newHotel1();
@@ -19,7 +18,6 @@ public class Saisie {
         Menu.newHotel3();
         return h;
     }
-
 
     public static void Start() {
         boolean fin = false;
@@ -83,6 +81,7 @@ public class Saisie {
                 int price = 0;
                 while (temp > 4 | temp < 1) {
                     System.out.println("Erreur : Saisie invalide, veuillez entrer une valeur comprise entre 1 et 4");
+                    temp = sc.nextInt();
                 }
 
                 switch (temp) {
@@ -106,7 +105,6 @@ public class Saisie {
                         break;
                 }
 
-
                 Chambre chambreSelectionne = new Chambre(num, floor, price);
                 Menu.h.addChambre(chambreSelectionne);
                 break;
@@ -116,7 +114,7 @@ public class Saisie {
             default:
                 break;
         }
-        //Peu importe le switch, on veut retourner au menu à la fin
+        // Peu importe le switch, on veut retourner au menu à la fin
         Menu.Choix();
     }
 
@@ -128,7 +126,7 @@ public class Saisie {
                 String name = sc.next();
                 System.out.println();
                 // TODO Verifier si nom en MAJ (On veut tout en MAJ)
-                Client c = new Client (name);
+                Client c = new Client(name);
                 Menu.h.addClient(c);
                 compteur++;
                 gestionReservation(c, compteur);
@@ -137,10 +135,19 @@ public class Saisie {
                 Hotel.affichageClients();
         }
     }
+    public static Chambre choixChambre(Vector<Chambre> liste) {
+        int temp = sc.nextInt();
+        for (Chambre i : liste) {
+            if (i.num == temp) {
+                return i;
+            }
+        }
+        return null;
+    }
 
     public static void gestionReservation(Client cl, int num) {
         Menu.dateArrivee();
-        //TODO comprendre comment ça fonctionne
+        // TODO comprendre comment ça fonctionne
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date start = null;
         try {
@@ -151,25 +158,59 @@ public class Saisie {
         Menu.dateDepart();
         Date end = null;
         try {
-            start = dateFormat.parse(sc.next());
+            end = dateFormat.parse(sc.next());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        // On veut assigner une chambre à notre reservation en parcourant la liste de chambres
-        Chambre ch = null;
-        for (Chambre x : Hotel.listeChambres) {
-            ch = x;
+        Menu.typeChambre();
+
+        int type = sc.nextInt();
+        while (type > 4 | type < 1) {
+            System.out.println("Erreur : Saisie invalide, veuillez entrer une valeur comprise entre 1 et 4");
+            type = sc.nextInt();
+        }
+
+        int priceWanted = 0;
+        switch (type) {
+            case 1:
+                priceWanted = 50;
+                break;
+
+            case 2:
+                priceWanted = 80;
+                break;
+
+            case 3:
+                priceWanted = 150;
+                break;
+
+            case 4:
+                priceWanted = 200;
+                break;
+
+            default:
+                break;
+        }
+
+        // On veut assigner une chambre à notre reservation en parcourant la liste de
+        Vector<Chambre> listChambresDispo = new Vector<Chambre>(); 
+        listChambresDispo = Hotel.getFreeRooms(priceWanted, start, end);
+        if (listChambresDispo.size() == 0) {
+            System.out.println("Erreur, liste vide");
+            Reservation.affichageReservation();
+        }
+        Hotel.affichageChambres(listChambresDispo);
+        Menu.selectionChambre();
+        Chambre ch = choixChambre(listChambresDispo);
+        while (ch == null) {
+            System.out.println("Erreur : Numéro de chambre invalide, veuillez réessayer");
+            ch = choixChambre(listChambresDispo);
         }
         Reservation r = new Reservation(start, end, cl, ch, num);
         ch.addReservation(r);
-
-        
-
         Menu.Choix();
     }
-
-
 
     public static void gestionSejour() {
         Menu.Choix();

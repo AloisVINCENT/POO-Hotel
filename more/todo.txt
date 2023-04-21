@@ -8,9 +8,9 @@
 4. Verifier toutes les données rentrées :
     - Date >12
     - Maj OU Min
+    - Vérifier si les données saisies existent au préalable (ex : Chambre existente)
     - etc.
 
-)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 ! Si le temps :
 
