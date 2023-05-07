@@ -1,6 +1,20 @@
 public class Menu {
     //Création de la variable de l'hôtel
-    public static Hotel h = Saisie.newHotel();
+    //public static Hotel h = Saisie.newHotel();
+    //! Variables de test pour ne pas avoir à créer un hôtel à chaque fois
+    public static Hotel h;
+    public static Chambre ch1;
+    public static Chambre ch2;
+    public static Client cl;
+
+    static {
+        h = new Hotel("2 rue de l'hotel", "Maurice hotel");
+        ch1 = new Chambre(101, 1, 50);
+        ch2 = new Chambre(201, 2, 80);
+        h.addChambre(ch1);
+        h.addChambre(ch2);
+        
+    }
 
     public static void Start() {
         // TODO Vérification de l'existence d'un fichier Hotel.txt
@@ -9,6 +23,7 @@ public class Menu {
     }
 
     public static void newHotel1() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                Entrez le nom de l'hotel                |");
         System.out.println("|--------------------------------------------------------|");
@@ -16,19 +31,21 @@ public class Menu {
     }
 
     public static void newHotel2() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|              Entrez l'adresse de l'hotel               |");
         System.out.println("|--------------------------------------------------------|");
     }
 
     public static void newHotel3() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                L'hotel a bien ete cree                 |");
         System.out.println("|--------------------------------------------------------|");
-        System.out.println("");
     }
 
     public static void Choix() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|     Rentrez le numero de ce que vous voulez gerer      |");
         System.out.println("|--------------------------------------------------------|");
@@ -42,6 +59,7 @@ public class Menu {
     }
 
     public static void gestionChambre() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|     Rentrez le numero de ce que vous voulez gerer      |");
         System.out.println("|--------------------------------------------------------|");
@@ -57,13 +75,14 @@ public class Menu {
         System.out.println("|--------------------------------------------------------|");
     }
     public static void numChambre() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|             Entrez le numero de la chambre             |");
         System.out.println("|--------------------------------------------------------|");
-        System.out.println();
     }
 
     public static void typeChambre() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|              Entrez le type de la chambre              |");
         System.out.println("|--------------------------------------------------------|");
@@ -72,10 +91,10 @@ public class Menu {
         System.out.println("| 3 : Suite Classique                                    |");
         System.out.println("| 4 : Suite Presidentielle                               |");
         System.out.println("|--------------------------------------------------------|");
-        System.out.println();
     }
 
     public static void gestionClient() {
+        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|     Rentrez le numero de ce que vous voulez gerer      |");
         System.out.println("|--------------------------------------------------------|");
@@ -110,6 +129,36 @@ public class Menu {
         System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|   Entrez le numéro de la chambre que vous souhaitez    |");
+        System.out.println("|--------------------------------------------------------|");
+    }
+    public static void selectionChambreSecours() {
+        System.out.println();
+        System.out.println("|--------------------------------------------------------|");
+        System.out.println("|    Vous pouvez choisir une chambre d'un autre type     |");
+    }
+        public static void selectionChambreSecours1() {
+        System.out.println();
+        System.out.println("|--------------------------------------------------------|");
+        System.out.println("|   Voici la liste des chambres simples disponibles :    |");
+        System.out.println("|--------------------------------------------------------|");
+    }
+
+        public static void selectionChambreSecours2() {
+        System.out.println();
+        System.out.println("|--------------------------------------------------------|");
+        System.out.println("|   Voici la liste des chambres doubles disponibles :    |");
+        System.out.println("|--------------------------------------------------------|");
+    }
+        public static void selectionChambreSecours3() {
+        System.out.println();
+        System.out.println("|--------------------------------------------------------|");
+        System.out.println("|   Voici la liste des suites classiques disponibles :   |");
+        System.out.println("|--------------------------------------------------------|");
+    }
+        public static void selectionChambreSecours4() {
+        System.out.println();
+        System.out.println("|--------------------------------------------------------|");
+        System.out.println("|Voici la liste des suites présidentielles disponibles : |");
         System.out.println("|--------------------------------------------------------|");
     }
 

@@ -28,10 +28,10 @@ public class Chambre {
 	}
 
 	
-	public static boolean isDispo(Date start2, Date end2){
+	public static boolean isDispo(Date startToCheck, Date endToCheck){
 		for (Reservation r : listeReservations) {
-			if ( (start2.after(r.start) && start2.before(r.end)) || (end2.after(r.start) && end2.before(r.end)) || (start2.before(r.start) && end2.after(r.end))) {
-				System.out.print("Conflit avec la reservation :");
+			if ( (startToCheck.after(r.start) && startToCheck.before(r.end)) || (endToCheck.after(r.start) && endToCheck.before(r.end)) || (startToCheck.before(r.start) && endToCheck.after(r.end))) {
+				System.out.print("Conflit avec la reservation : ");
 				System.out.println(r.num);
 				return false;
 			}
