@@ -55,8 +55,6 @@ public class Hotel {
 		listeProduits.add(p);
 	}
 
-	//TODO getFreeRooms qui va parcourir listeChambres et appliquer la methode isDispo
-
 	public static Vector<Chambre> getFreeRooms(int priceWanted, Date start, Date end){
 				Vector<Chambre> chL = new Vector<Chambre>();
 				for (Chambre x : Hotel.listeChambres) {

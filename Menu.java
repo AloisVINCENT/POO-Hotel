@@ -13,7 +13,6 @@ public class Menu {
         ch2 = new Chambre(201, 2, 80);
         h.addChambre(ch1);
         h.addChambre(ch2);
-        
     }
 
     public static void Start() {
