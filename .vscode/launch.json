@@ -4,13 +4,20 @@
     // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    {
-        "type": "java",
-        "name": "Attach",
-        "request": "attach",
-        "hostName": "localhost",
-        "port": "<debug port of the debuggee>"
-    },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "POO-Hotel_90571c44"
+        },
+        {
+            "type": "java",
+            "name": "Attach",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": "<debug port of the debuggee>"
+        },
         {
             "type": "java",
             "name": "Current File",

@@ -18,15 +18,6 @@ public class Reservation {
 		num = n;
 	}
 
-	public static void affichageReservation(){
-        int x = 1;
-		for (Reservation r : Chambre.listeReservations) {
-			//TODO Affichage en tableau 
-			System.out.println("Reservation "+ x + ": Nom du client : " + r.client.name + " | Numéro de chambre : " + r.chambre.num + " | Dates : " + r.start + " - " + r.end);
-			x++;
-		}
-        Menu.Choix();
-    }
 
 	public Vector<Produit> listeProduits = new Vector<Produit>();
 	public void addProduit(Produit p){

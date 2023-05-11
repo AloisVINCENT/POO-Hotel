@@ -5,14 +5,36 @@ public class Menu {
     public static Hotel h;
     public static Chambre ch1;
     public static Chambre ch2;
+    public static Chambre ch3;
+    public static Chambre ch4;
+    public static Chambre ch5;
+    public static Chambre ch6;
+    public static Chambre ch7;
+    public static Chambre ch8;
+    public static Chambre ch9;
     public static Client cl;
 
     static {
         h = new Hotel("2 rue de l'hotel", "Maurice hotel");
         ch1 = new Chambre(101, 1, 50);
         ch2 = new Chambre(201, 2, 80);
+        ch3 = new Chambre(301, 3, 50);
+        ch4 = new Chambre(401, 4, 50);
+        ch5 = new Chambre(501, 5, 150);
+        ch6 = new Chambre(601, 6, 50);
+        ch7 = new Chambre(701, 7, 50);
+        ch8 = new Chambre(801, 8, 50);
+        ch9 = new Chambre(901, 9, 50);
+        
         h.addChambre(ch1);
         h.addChambre(ch2);
+        h.addChambre(ch3);
+        h.addChambre(ch4);
+        h.addChambre(ch5);
+        h.addChambre(ch6);        
+        h.addChambre(ch7);
+        h.addChambre(ch8);
+        h.addChambre(ch9);
     }
 
     public static void Start() {
@@ -131,7 +153,6 @@ public class Menu {
         System.out.println("|--------------------------------------------------------|");
     }
     public static void selectionChambreSecours() {
-        System.out.println();
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|    Vous pouvez choisir une chambre d'un autre type     |");
     }

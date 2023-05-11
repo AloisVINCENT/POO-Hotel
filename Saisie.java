@@ -30,7 +30,7 @@ public class Saisie {
                     Menu.gestionClient();
                     break;
                 case 3:
-                    Reservation.affichageReservation();
+                    Chambre.affichageReservation();
                     break;
                 case 4:
                     Menu.gestionSejour();
@@ -218,10 +218,12 @@ public class Saisie {
     }
 
     public static void choixChambreSecours(Date start, Date end, Client cl, int num){
+
         // On regarde si il y a au moins une autre chambre disponible sur cette période
         if ((Hotel.getFreeRooms(50, start, end)).size() == 0 && (Hotel.getFreeRooms(80, start, end)).size() == 0 && (Hotel.getFreeRooms(150, start, end)).size() == 0 && (Hotel.getFreeRooms(200, start, end)).size() == 0) {
-            Reservation.affichageReservation();
+            Chambre.affichageReservation();
         } 
+        
         //On propose les autres types de chambres
         else Menu.selectionChambreSecours();
         //On crée les listes des autres chambres disponibles
@@ -233,6 +235,13 @@ public class Saisie {
         liste3 = Hotel.getFreeRooms(150, start, end);
         Vector<Chambre> liste4 = new Vector<Chambre>();
         liste4 = Hotel.getFreeRooms(200, start, end);
+
+        Vector<Chambre> listChambresDispo = new Vector<Chambre>();
+        listChambresDispo.addAll(liste1);
+        listChambresDispo.addAll(liste2);
+        listChambresDispo.addAll(liste3);
+        listChambresDispo.addAll(liste4);
+
 
 
         if (liste1.size() != 0) {
@@ -249,11 +258,6 @@ public class Saisie {
             Hotel.affichageChambres(liste4);
         }
 
-        Vector<Chambre> listChambresDispo = new Vector<Chambre>();
-        listChambresDispo.addAll(liste1);
-        listChambresDispo.addAll(liste2);
-        listChambresDispo.addAll(liste3);
-        listChambresDispo.addAll(liste4);
 
         Chambre ch = choixChambre(listChambresDispo);
         while (ch == null) {

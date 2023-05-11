@@ -58,9 +58,7 @@ public class Hotel {
 	public static Vector<Chambre> getFreeRooms(int priceWanted, Date start, Date end){
 				Vector<Chambre> chL = new Vector<Chambre>();
 				for (Chambre x : Hotel.listeChambres) {
-					if (x.price == priceWanted && Chambre.isDispo(start, end) == true) {
-						System.out.println("Chambre dispo :");
-						System.out.println(x);
+					if (x.price == priceWanted && x.isDispo(start, end, x) == true) {
 						chL.add(x);
 					}
 				}
