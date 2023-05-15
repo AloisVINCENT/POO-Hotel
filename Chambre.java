@@ -30,7 +30,7 @@ public class Chambre {
 
 	public static Vector<Reservation> listeReservationsGlobale = new Vector<Reservation>();
 
-	public void addListeReservation (Vector<Reservation> lR){
+	public void initListeReservation (Vector<Reservation> lR){
 		listeReservationsGlobale.addAll(lR);
 	}
 
