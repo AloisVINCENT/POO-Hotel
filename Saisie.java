@@ -1,10 +1,12 @@
-import java.util.*;
-import java.text.*;
+import java.util.Scanner;
+import java.util.Vector;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Saisie {
     // Le compteur sert au numéro de réservation
     public static int compteur = 0;
-
     public static Scanner sc = new Scanner(System.in);
 
     public static Hotel newHotel() {
@@ -30,7 +32,7 @@ public class Saisie {
                     Menu.gestionClient();
                     break;
                 case 3:
-                    Chambre.affichageReservation();
+                    Chambre.affichageReservations();
                     break;
                 case 4:
                     Menu.gestionSejour();
@@ -58,9 +60,9 @@ public class Saisie {
                 int floor = sc.nextInt();
                 while (floor < 0 | floor > 9) {
                     if (floor < 0) {
-                        System.out.println("Erreur, l'etage ne peut être negatif, veuillez reessayer");
+                        System.out.println("Erreur, l'étage ne peut être négatif, veuillez réessayer");
                     } else {
-                        System.out.println("Erreur, l'etage ne peut être superieur à 9, veuillez reessayer");
+                        System.out.println("Erreur, l'étage ne peut être supérieur à 9, veuillez réessayer");
                     }
                     floor = sc.nextInt();
                 }
@@ -69,7 +71,7 @@ public class Saisie {
 
                 int temp_num = sc.nextInt();
                 while (temp_num < 0 | temp_num > 99) {
-                    System.out.println("Erreur, le numero ne peut être negatif, veuillez reessayer");
+                    System.out.println("Erreur, le numéro ne peut être négatif, veuillez réessayer");
                     temp_num = sc.nextInt();
                 }
                 int num = floor * 100 + temp_num;
@@ -82,25 +84,25 @@ public class Saisie {
                     System.out.println("Erreur : Saisie invalide, veuillez entrer une valeur comprise entre 1 et 4");
                     temp = sc.nextInt();
                 }
-                //? Le prix définit le type de chambre
+                // ? Le prix définit le type de chambre
                 switch (temp) {
                     case 1:
-                    //Simple
+                        // Simple
                         price = 50;
                         break;
 
                     case 2:
-                    //Double
+                        // Double
                         price = 80;
                         break;
 
                     case 3:
-                    //Classique
+                        // Classique
                         price = 150;
                         break;
 
                     case 4:
-                    //Présidentielle
+                        // Présidentielle
                         price = 200;
                         break;
 
@@ -137,10 +139,9 @@ public class Saisie {
         }
     }
 
-
     public static void gestionReservation(Client cl, int num) {
         Menu.dateArrivee();
-        // TODO comprendre comment ça fonctionne
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date start = null;
         try {
@@ -186,7 +187,8 @@ public class Saisie {
                 break;
         }
 
-        // On veut assigner une chambre à notre reservation en parcourant la liste des chambres disponibles
+        // On veut assigner une chambre à notre reservation en parcourant la liste des
+        // chambres disponibles
         Vector<Chambre> listChambresDispo = new Vector<Chambre>();
         listChambresDispo = Hotel.getFreeRooms(priceWanted, start, end);
 
@@ -217,16 +219,19 @@ public class Saisie {
         return null;
     }
 
-    public static void choixChambreSecours(Date start, Date end, Client cl, int num){
+    public static void choixChambreSecours(Date start, Date end, Client cl, int num) {
 
         // On regarde si il y a au moins une autre chambre disponible sur cette période
-        if ((Hotel.getFreeRooms(50, start, end)).size() == 0 && (Hotel.getFreeRooms(80, start, end)).size() == 0 && (Hotel.getFreeRooms(150, start, end)).size() == 0 && (Hotel.getFreeRooms(200, start, end)).size() == 0) {
-            Chambre.affichageReservation();
-        } 
-        
-        //On propose les autres types de chambres
-        else Menu.selectionChambreSecours();
-        //On crée les listes des autres chambres disponibles
+        if ((Hotel.getFreeRooms(50, start, end)).size() == 0 && (Hotel.getFreeRooms(80, start, end)).size() == 0
+                && (Hotel.getFreeRooms(150, start, end)).size() == 0
+                && (Hotel.getFreeRooms(200, start, end)).size() == 0) {
+            Chambre.affichageReservations();
+        }
+
+        // On propose les autres types de chambres
+        else
+            Menu.selectionChambreSecours();
+        // On crée les listes des autres chambres disponibles
         Vector<Chambre> liste1 = new Vector<Chambre>();
         liste1 = Hotel.getFreeRooms(50, start, end);
         Vector<Chambre> liste2 = new Vector<Chambre>();
@@ -242,22 +247,22 @@ public class Saisie {
         listChambresDispo.addAll(liste3);
         listChambresDispo.addAll(liste4);
 
-
-
         if (liste1.size() != 0) {
             Menu.selectionChambreSecours1();
             Hotel.affichageChambres(liste1);
-        } if (liste2.size() != 0) {
+        }
+        if (liste2.size() != 0) {
             Menu.selectionChambreSecours2();
             Hotel.affichageChambres(liste2);
-        } if (liste3.size() != 0) {
+        }
+        if (liste3.size() != 0) {
             Menu.selectionChambreSecours3();
             Hotel.affichageChambres(liste3);
-        } if (liste4.size() != 0) {
+        }
+        if (liste4.size() != 0) {
             Menu.selectionChambreSecours4();
             Hotel.affichageChambres(liste4);
         }
-
 
         Chambre ch = choixChambre(listChambresDispo);
         while (ch == null) {
@@ -268,7 +273,6 @@ public class Saisie {
         ch.addReservation(r);
         Menu.Choix();
     }
-
 
     public static void gestionSejour() {
         Menu.Choix();
